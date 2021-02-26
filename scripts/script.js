@@ -49,9 +49,3 @@ function scrollToTop() {
     window.scrollTo(0, c - c / 10);
   }
 };
-
-// When the button is clicked, run our ScrolltoTop function above!
-document.getElementById('js-top').onclick = function(e) {
-  e.preventDefault();
-  scrollToTop();
-}
