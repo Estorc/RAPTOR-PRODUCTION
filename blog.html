@@ -64,7 +64,11 @@
 	<div id="news">
 	<script>
 	
-		$.getJSON("https://api.jsonbin.io/v3/b/632c9e70e13e6063dcb185c0/latest", function(json) {
+		let req = new XMLHttpRequest();
+
+		req.onreadystatechange = () => {
+		  if (req.readyState == XMLHttpRequest.DONE) {
+			let json = req.responseText;
 			for(i=0;i<json["document"].length;i++) {
 				document.getElementById('news').innerHTML += ("<div class='newbackframe' id='new" + i + "'></div>")
 				if (json["document"][i].image != "none") {
@@ -85,7 +89,12 @@
 				document.getElementById('new'+ i).innerHTML += ("<h4 class='newtext' style='position:relative;top:-40px;margin-bottom:-50px'>" + json["document"][i].text + "</h4>")
 				}
 			}
-		});
+		  }
+		};
+
+		req.open("GET", "https://api.jsonbin.io/v3/b/632c9e70e13e6063dcb185c0/latest", true);
+		req.setRequestHeader("X-Access-Key", "$2b$10$mKHTeqVD4f7TRTRQ9BPtwOTTgvir5qmVJJHhia6HGxPR5nJ55i6uu");
+		req.send();
 
 	</script>
 	</div>
