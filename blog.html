@@ -64,7 +64,7 @@
 	<div id="news">
 	<script>
 	
-		$.getJSON("https://api.jsonbin.io/b/6036417cf1be644b0a643be5/latest", function(json) {
+		$.getJSON("https://api.jsonbin.io/v3/b/632c9e70e13e6063dcb185c0/latest", function(json) {
 			for(i=0;i<json["document"].length;i++) {
 				document.getElementById('news').innerHTML += ("<div class='newbackframe' id='new" + i + "'></div>")
 				if (json["document"][i].image != "none") {
