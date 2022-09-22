@@ -68,7 +68,7 @@
 
 		req.onreadystatechange = () => {
 		  if (req.readyState == XMLHttpRequest.DONE) {
-			let json = req.responseText;
+			let json = JSON.parse(req.responseText);
 			for(i=0;i<json["document"].length;i++) {
 				document.getElementById('news').innerHTML += ("<div class='newbackframe' id='new" + i + "'></div>")
 				if (json["document"][i].image != "none") {
