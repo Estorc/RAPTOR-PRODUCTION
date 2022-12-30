@@ -41,6 +41,35 @@ footer {
 }
 
 
+.workSpaceBlur {
+	
+	position:fixed;
+	top:0;
+	width:100%;
+	height:100%;
+	background:#000000cc;
+	z-index:-5;
+	transition: ease-in-out 0.5s;
+	filter: opacity(0%);
+	
+}
+
+.workSpace {
+	
+	z-index:2;
+	position:fixed;
+    margin-left: 50%;
+	top:50%;
+	
+}
+
+
+#workSpaceFrame {
+
+    transform: translate(-50%,-50%);
+	
+}
+
 
 .top {
 

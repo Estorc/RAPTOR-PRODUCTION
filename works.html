@@ -19,6 +19,26 @@
 </head>
 
 <body style="background: white;">
+
+<div class="workSpaceBlur">
+	<div class="workSpace">
+
+	<iframe id="workSpaceFrame"
+		title="Inline Frame Example"
+		width="5"
+		height="5"
+		src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
+	</iframe>
+	
+	<a href='javascript:closeWork()'><img style="position:absolute;top:calc(-50% + 10px);right:calc(50% + 6px)" src="images/cross.png"/></a>
+	<a href='javascript:fullscreen()'><img style="position:absolute;top:calc(-50% + 10px);right:calc(50% + 50px)" src="images/fullscreen.png"/></a>
+	<a href='javascript:openLink()'><img style="position:absolute;top:calc(-50% + 10px);right:calc(50% + 98px)" src="images/open.png"/></a>
+
+	</div>
+</div>
+
+
+
 <div class="top" style="z-index:1;">
 	<strong>
 	<div id='tlColumn'>
@@ -66,6 +86,42 @@
 		<h2 style="font-family: 'PT Sans Narrow', sans-serif;">TRAVAUX :</h2><br>
 	<div id="news">
 	<script>
+	
+		function fullscreen() {
+		
+			document.getElementById("workSpaceFrame").requestFullscreen();
+		
+		}
+		
+		function openLink() {
+		
+			window.open(document.getElementById("workSpaceFrame").src);
+		
+		}
+	
+	
+		function openWork(link,width,height) {
+		
+			document.getElementsByClassName("workSpaceBlur")[0].style.zIndex = "2"
+			document.getElementsByClassName("workSpaceBlur")[0].style.filter = "opacity(100%)"
+			document.getElementById("workSpaceFrame").src = link;
+			document.getElementById("workSpaceFrame").width = width;
+			document.getElementById("workSpaceFrame").height = height;
+			document.body.style.overflow = "hidden";
+		
+		}
+		
+		
+		function closeWork(link) {
+		
+			document.getElementsByClassName("workSpaceBlur")[0].style.zIndex = "-5"
+			document.getElementsByClassName("workSpaceBlur")[0].style.filter = "opacity(0%)"
+			document.getElementById("workSpaceFrame").src = null;
+			document.body.style.overflow = "";
+		
+		}
+	
+	
 	
 		let req = new XMLHttpRequest();
 
