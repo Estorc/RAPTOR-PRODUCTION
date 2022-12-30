@@ -28,8 +28,8 @@
 			</a>
 			<nav id='phoneMenuList'>
 				<a href="index.html">ACCUEIL</a><br>
-				<a href="blog.html" style="color:white;">BLOG</a><br>
-				<a href="works.html">TRAVAUX</a><br>
+				<a href="blog.html">BLOG</a><br>
+				<a href="works.html" style="color:white;">TRAVAUX</a><br>
 				<a href="about.html">À PROPOS</a><br>
 			</nav>
 		</div>
@@ -37,9 +37,9 @@
 		<div id='pcMenu'>
 			<a href="index.html">ACCUEIL</a>
 			<span>|</span>
-			<a href="blog.html" style="color:white;">BLOG</a>
+			<a href="blog.html">BLOG</a>
 			<span>|</span>
-			<a href="works.html">TRAVAUX</a>
+			<a href="works.html" style="color:white;">TRAVAUX</a>
 			<span>|</span>
 			<a href="about.html">À PROPOS</a>
 		</div>
@@ -63,7 +63,7 @@
 
 
 <div class="page" style="margin-top: 5em; padding-top: 5em;min-height: 50em;text-align: center;">
-		<h2 style="font-family: 'PT Sans Narrow', sans-serif;">NOUVEAUTÉS :</h2><br>
+		<h2 style="font-family: 'PT Sans Narrow', sans-serif;">TRAVAUX :</h2><br>
 	<div id="news">
 	<script>
 	
@@ -81,8 +81,8 @@
 						document.getElementById('new'+ i).innerHTML += ("<img style='position:relative;width:calc(100% + 36px);margin-left:-18px;margin-top:-25px;margin-bottom:10px' src='"+ json["document"][i].image +"'/>")
 					}
 				}
-				document.getElementById('new'+ i).innerHTML += ("<img src='images/RaptorProdIcon.png' width='30px' style='border-radius: 30px;' />")
-				document.getElementById('new'+ i).innerHTML += ("<span style='color:#444;font-size:14px;position:relative;left: 10px;top: -20px'>RAPTOR PRODUCTION</span><br>")
+				document.getElementById('new'+ i).innerHTML += ("<img src='" + json["document"][i].authorLogo + "' width='30px' style='border-radius: 30px;' />")
+				document.getElementById('new'+ i).innerHTML += ("<span style='color:#444;font-size:14px;position:relative;left: 10px;top: -20px'>" + json["document"][i].authorName + "</span><br>")
 				document.getElementById('new'+ i).innerHTML += ("<span style='color:#888;font-size:14px;position:relative;left: 40px;top: -20px'>" + json["document"][i].date + "</span>")
 				if (json["document"][i].link != "none") {
 					document.getElementById('new'+ i).innerHTML += ("<a style='position:relative;display:block;top:-40px;height:auto;' href='" + json["document"][i].link + "'> <h4 style='position:relative;top:10px'>" + json["document"][i].title + "</h4> <h4 class='newtext' style='position:relative;margin-bottom:-50px'>" + json["document"][i].text + "</h4> </a>")
@@ -95,7 +95,7 @@
 		  }
 		};
 
-		req.open("GET", "https://api.jsonbin.io/v3/b/632c9e70e13e6063dcb185c0/latest", true);
+		req.open("GET", "https://api.jsonbin.io/v3/b/63acc84adfc68e59d572f837/latest", true);
 		req.setRequestHeader("X-Access-Key", "$2b$10$mKHTeqVD4f7TRTRQ9BPtwOTTgvir5qmVJJHhia6HGxPR5nJ55i6uu");
 		req.send();
 
