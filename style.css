@@ -116,6 +116,12 @@ footer {
 	
 }
 
+#mobileControls {
+		
+	visibility: hidden;
+		
+}
+
 #tlColumn {
 	text-align: left;
 	float: left;
@@ -138,6 +144,23 @@ footer {
 		height: 8%;
 		font-size:200%;
 
+	}
+}
+
+
+@media only screen and (hover: none) and (pointer: coarse) {
+	#workSpaceFrame {
+
+		width: 95vw;
+		height:calc(95vw * 720.0 / 1280.0);
+		
+	}
+	
+	
+	#mobileControls {
+		
+		visibility: visible;
+		
 	}
 }
 

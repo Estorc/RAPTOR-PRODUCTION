@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="scripts/script.js"></script>
+  <script src="scripts/joy.min.js"></script>
+  
   <meta property="og:image" content="https://github.com/Estorc/RAPTOR-PRODUCTION/blob/main/images/RaptorProd.png?raw=true" />
   <meta property="og:description" 
     content="Le site officiel de la RAPTOR PRODUCTION." />
@@ -33,6 +35,84 @@
 	<a href='javascript:closeWork()'><img style="position:absolute;top:calc(-50% + 10px);right:calc(50% + 6px)" src="images/cross.png"/></a>
 	<a href='javascript:fullscreen()'><img style="position:absolute;top:calc(-50% + 10px);right:calc(50% + 50px)" src="images/fullscreen.png"/></a>
 	<a href='javascript:openLink()'><img style="position:absolute;top:calc(-50% + 10px);right:calc(50% + 98px)" src="images/open.png"/></a>
+
+	<div id="mobileControls">
+		<div id="joyDiv" style="width:200px;height:200px; position:fixed;bottom:0%;left:-0%"></div>
+		<div id="zButtonDiv" style="width:200px;height:200px; position:fixed;bottom:0%;right:0;display: flex;justify-content: center;align-items: center;"><a style="width:50%;height:50%" id="zButton" href='javascript:void(0)'><img style="width:100%;height:100%" src="images/shotButton1.png"/></a></div>
+		<div id="shiftButtonDiv" style="width:200px;height:200px; position:fixed;bottom:0%;right:150px;display: flex;justify-content: center;align-items: center;"><a style="width:50%;height:50%" id="shiftButton" href='javascript:void(0)'><img style="width:100%;height:100%" src="images/slowButton1.png"/></a></div>
+	</div>
+		<script type="text/javascript">
+
+			var joyParam = { "title": "joystick", "internalFillColor": "#5c5c5c", "internalStrokeColor": "#171717", "externalStrokeColor": "#171717"};
+			var Joy = new JoyStick('joyDiv', joyParam);
+
+			var joyDirection = document.getElementById("joyDirection");
+						
+			['mousedown','ontouchstart'].forEach( function(evt) {
+				document.getElementById('zButton').addEventListener(evt, function() {
+					document.getElementById('zButton').getElementsByTagName('img')[0].src = "images/shotButton2.png";
+					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '90'});
+				});
+			});
+			
+			
+
+			['mouseup','ontouchend'].forEach( function(evt) {
+				document.getElementById('zButton').addEventListener(evt, function() {
+					document.getElementById('zButton').getElementsByTagName('img')[0].src = "images/shotButton1.png";
+					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '90'});
+				});
+			});
+			
+			
+			
+			['mousedown','ontouchstart'].forEach( function(evt) {
+				document.getElementById('shiftButton').addEventListener(evt, function() {
+					document.getElementById('shiftButton').getElementsByTagName('img')[0].src = "images/slowButton2.png";
+					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '16'});
+				});
+			});
+			
+			
+
+			['mouseup','ontouchend'].forEach( function(evt) {
+				document.getElementById('shiftButton').addEventListener(evt, function() {
+					document.getElementById('shiftButton').getElementsByTagName('img')[0].src = "images/slowButton1.png";
+					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '16'});
+				});
+			});
+			
+			
+			setInterval(function(){ 
+			
+				let Joykey = Joy.GetDir();
+				if (Joykey.includes("N")) {
+					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '38'})
+				} else {
+					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '38'})
+				}
+				
+				if (Joykey.includes("E")) {
+					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '39'})
+				} else {
+					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '39'})
+				}
+				
+				if (Joykey.includes("S")) {
+					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '40'})
+				} else {
+					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '40'})
+				}
+				
+				if (Joykey.includes("W")) {
+					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '37'})
+				} else {
+					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '37'})
+				}
+
+			}, 50);
+		</script>
+
 
 	</div>
 </div>
