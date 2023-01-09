@@ -84,30 +84,31 @@
 			
 			
 			setInterval(function(){ 
-			
-				let Joykey = Joy.GetDir();
-				if (Joykey.includes("N")) {
-					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '38'})
-				} else {
-					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '38'})
-				}
-				
-				if (Joykey.includes("E")) {
-					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '39'})
-				} else {
-					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '39'})
-				}
-				
-				if (Joykey.includes("S")) {
-					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '40'})
-				} else {
-					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '40'})
-				}
-				
-				if (Joykey.includes("W")) {
-					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '37'})
-				} else {
-					document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '37'})
+				if (getComputedStyle(document.querySelector('#mobileControls')).visibility == "visible") {
+					let Joykey = Joy.GetDir();
+					if (Joykey.includes("N")) {
+						document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '38'})
+					} else {
+						document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '38'})
+					}
+					
+					if (Joykey.includes("E")) {
+						document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '39'})
+					} else {
+						document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '39'})
+					}
+					
+					if (Joykey.includes("S")) {
+						document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '40'})
+					} else {
+						document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '40'})
+					}
+					
+					if (Joykey.includes("W")) {
+						document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyDown({'keyCode': '37'})
+					} else {
+						document.getElementById("workSpaceFrame").contentWindow.window.Input._onKeyUp({'keyCode': '37'})
+					}
 				}
 
 			}, 10);
