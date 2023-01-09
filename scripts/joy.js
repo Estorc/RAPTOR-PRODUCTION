@@ -101,6 +101,7 @@ var JoyStick = (function(container, parameters, callback)
     var context=canvas.getContext("2d");
 
     var pressed = 0; // Bool - 1=Yes - 0=No
+	var touchRef = null;
     var circumference = 2 * Math.PI;
     var internalRadius = (canvas.width-((canvas.width/2)+10))/2;
     var maxMoveStick = internalRadius + 5;
@@ -178,6 +179,8 @@ var JoyStick = (function(container, parameters, callback)
     function onTouchStart(event) 
     {
         pressed = 1;
+		touchRef = event.changedTouches[0].identifier;
+		
     }
 
     function onTouchMove(event)
@@ -215,26 +218,29 @@ var JoyStick = (function(container, parameters, callback)
 
     function onTouchEnd(event) 
     {
-        pressed = 0;
-        // If required reset position store variable
-        if(autoReturnToCenter)
-        {
-            movedX = centerX;
-            movedY = centerY;
-        }
-        // Delete canvas
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        // Redraw object
-        drawExternal();
-        drawInternal();
+		if (touchRef == event.changedTouches[0].identifier) {
+			touchRef = null;
+			pressed = 0;
+			// If required reset position store variable
+			if(autoReturnToCenter)
+			{
+				movedX = centerX;
+				movedY = centerY;
+			}
+			// Delete canvas
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			// Redraw object
+			drawExternal();
+			drawInternal();
 
-        // Set attribute of callback
-        StickStatus.xPosition = movedX;
-        StickStatus.yPosition = movedY;
-        StickStatus.x = (100*((movedX - centerX)/maxMoveStick)).toFixed();
-        StickStatus.y = ((100*((movedY - centerY)/maxMoveStick))*-1).toFixed();
-        StickStatus.cardinalDirection = getCardinalDirection();
-        callback(StickStatus);
+			// Set attribute of callback
+			StickStatus.xPosition = movedX;
+			StickStatus.yPosition = movedY;
+			StickStatus.x = (100*((movedX - centerX)/maxMoveStick)).toFixed();
+			StickStatus.y = ((100*((movedY - centerY)/maxMoveStick))*-1).toFixed();
+			StickStatus.cardinalDirection = getCardinalDirection();
+			callback(StickStatus);
+		}
     }
 
     /**
