@@ -81,6 +81,7 @@ footer {
 	top:0px;
 	padding: 3px 4vw;
 	font-size:100%;
+	min-height:30px;
 	height: 4%;
 	width: 100%;
 	text-align: right;
@@ -138,6 +139,25 @@ footer {
 	height:100%
 }
 
+
+#indexFooter {
+	
+	position:absolute;
+	top:90vh;
+	
+}
+
+
+@media (orientation: landscape) {
+	
+	#indexFooter {
+		
+		top:calc(90vh * 1vw / 1vh);
+		
+	}
+	
+}
+
 @media only screen and (max-width: 700px) {
 	div.top {
 
@@ -152,6 +172,7 @@ footer {
 	#workSpaceFrame {
 
 		width: 95vw;
+		max-height: 98vh;
 		height:calc(95vw * 720.0 / 1280.0);
 		
 	}
