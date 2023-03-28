@@ -17,6 +17,7 @@
   <meta property="og:site_name" content="Estorc" />
   <link rel="icon" href="images/RaptorProdIcon.png" />
   <script src="scripts/masonry.pkgd.min.js"></script>
+  <script src="https://cdn.gravitec.net/storage/983970e10992f283ed020d84015acdc0/client.js" async></script>
 </head>
 
 <body style="background: white;">
@@ -68,18 +69,33 @@
 	<div id="news">
 	<script>
 	
-		function msnryCall() {
+		var elem = document.querySelector('#news');
+		var msnry = new Masonry( elem, {
+		  // options
+		  itemSelector: '.newbackframe',
+			hiddenStyle: {
+			  transform: 'scale(50%)',
+			  opacity: 0
+			},
+			visibleStyle: {
+			  transform: 'scale(100%)',
+			  opacity: 1
+			},
+			transitionDuration: 0
+		});
 		
-			var elem = document.querySelector('#news');
-			var msnry = new Masonry( elem, {
-			  // options
-			  itemSelector: '.newbackframe',
-			  fitWidth: true
-			});
+		
+		function resizeContainer() {
+		
+			document.getElementById('news').style.width = ((0.8*window.innerWidth/(268 + window.innerWidth * 4 / 100))<<0)*(268 + window.innerWidth * 4 / 100)+1 + "px"
 		
 		}
+		
+		
+		onresize = (event) => {resizeContainer()};
 	
 	
+		resizeContainer();
 	
 		let req = new XMLHttpRequest();
 
@@ -92,7 +108,7 @@
 				var img = new Image();
 				img.onload = function() {
 				
-					msnryCall()
+					msnry.layout();
 			
 				}
 				img.src = json["document"][i].image;
@@ -116,9 +132,9 @@
 				document.getElementById('new'+ i).innerHTML += ("<h4 style='position:relative;top:-30px'>" + json["document"][i].title + "</h4>")
 				document.getElementById('new'+ i).innerHTML += ("<h4 class='newtext' style='position:relative;top:-40px;margin-bottom:-50px'>" + json["document"][i].text + "</h4>")
 				}
+				
 			}
-	
-			msnryCall()
+			msnry.appended(document.getElementsByClassName('newbackframe'));
 	
 		  }
 		};
