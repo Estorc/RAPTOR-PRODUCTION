@@ -16,6 +16,7 @@
   <meta property="og:title" content="RAPTOR PRODUCTION" />
   <meta property="og:site_name" content="Estorc" />
   <link rel="icon" href="images/RaptorProdIcon.png" />
+  <script src="scripts/masonry.pkgd.min.js"></script>
 </head>
 
 <body style="background: white;">
@@ -67,6 +68,19 @@
 	<div id="news">
 	<script>
 	
+		function msnryCall() {
+		
+			var elem = document.querySelector('#news');
+			var msnry = new Masonry( elem, {
+			  // options
+			  itemSelector: '.newbackframe',
+			  fitWidth: true
+			});
+		
+		}
+	
+	
+	
 		let req = new XMLHttpRequest();
 
 		req.onreadystatechange = () => {
@@ -74,11 +88,22 @@
 			let json = JSON.parse(req.responseText).record;
 			for(i=0;i<json["document"].length;i++) {
 				document.getElementById('news').innerHTML += ("<div class='newbackframe' id='new" + i + "'></div>")
-				if (json["document"][i].image != "none") {
-					if (json["document"][i].link != "none") {
-						document.getElementById('new'+ i).innerHTML += ("<a href='" + json["document"][i].link + "'> <img style='position:relative;width:calc(100% + 36px);margin-left:-18px;margin-top:-25px;margin-bottom:10px' src='"+ json["document"][i].image +"'/> </a>")
-					} else {
-						document.getElementById('new'+ i).innerHTML += ("<img style='position:relative;width:calc(100% + 36px);margin-left:-18px;margin-top:-25px;margin-bottom:10px' src='"+ json["document"][i].image +"'/>")
+				
+				var img = new Image();
+				img.onload = function() {
+				
+					msnryCall()
+			
+				}
+				img.src = json["document"][i].image;
+				
+				{
+					if (json["document"][i].image != "none") {
+						if (json["document"][i].link != "none") {
+							document.getElementById('new'+ i).innerHTML += ("<a href='" + json["document"][i].link + "'> <img style='position:relative;width:calc(100% + 36px);margin-left:-18px;margin-top:-25px;margin-bottom:10px' src='"+ json["document"][i].image +"'/> </a>")
+						} else {
+							document.getElementById('new'+ i).innerHTML += ("<img style='position:relative;width:calc(100% + 36px);margin-left:-18px;margin-top:-25px;margin-bottom:10px' src='"+ json["document"][i].image +"'/>")
+						}
 					}
 				}
 				document.getElementById('new'+ i).innerHTML += ("<img src='images/RaptorProdIcon.png' width='30px' style='border-radius: 30px;' />")
@@ -92,6 +117,9 @@
 				document.getElementById('new'+ i).innerHTML += ("<h4 class='newtext' style='position:relative;top:-40px;margin-bottom:-50px'>" + json["document"][i].text + "</h4>")
 				}
 			}
+	
+			msnryCall()
+	
 		  }
 		};
 
