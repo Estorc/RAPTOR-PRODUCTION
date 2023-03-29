@@ -17,7 +17,15 @@
   <meta property="og:site_name" content="Estorc" />
   <link rel="icon" href="images/RaptorProdIcon.png" />
   <script src="scripts/masonry.pkgd.min.js"></script>
-  <script src="https://cdn.gravitec.net/storage/983970e10992f283ed020d84015acdc0/client.js" async></script>
+	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer=""></script>
+	<script>
+	  window.OneSignal = window.OneSignal || [];
+	  OneSignal.push(function() {
+		OneSignal.init({
+		  appId: "d0904e2a-8827-45f9-ad34-4c1e9b26e072",
+		});
+	  });
+	</script>
 </head>
 
 <body style="background: white;">
