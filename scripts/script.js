@@ -8,6 +8,32 @@ function parallax() {
 
 
 
+function closeNew() {
+
+	document.getElementById("newPage").style.visibility = 'hidden';
+	document.getElementById("newPage").style.opacity = 0;
+	document.body.style.overflowY = 'visible';
+	document.getElementById("top").style.right = '0px';
+	document.body.style.paddingRight = '0px';
+	document.getElementById("top").style.width = '100%';
+	
+}
+
+
+function openNew(html) {
+
+	document.getElementById("newPage").style.visibility = 'visible';
+	document.getElementById("newPage").style.opacity = 1;
+	document.body.style.overflowY = 'hidden';
+	document.getElementById("top").style.right = '10px';
+	document.body.style.paddingRight = '10px';
+	document.getElementById("top").style.width = 'calc(100% - 10px)';
+	
+	document.getElementById("newPageContent").innerHTML = html;
+	
+}
+
+
 function phoneMenu() {
 	let phoneMenuList = document.getElementById('phoneMenuList');
 	if ($(phoneMenuList).css('visibility') == 'visible') {
