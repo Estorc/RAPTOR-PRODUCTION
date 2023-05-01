@@ -29,7 +29,7 @@ function openNew(html) {
 	document.body.style.paddingRight = '10px';
 	document.getElementById("top").style.width = 'calc(100% - 10px)';
 	
-	document.getElementById("newPageContent").innerHTML = html.replaceAll('%DQUOTE%', '"').replaceAll("%QUOTE%", "'");
+	document.getElementById("newPageContent").innerHTML = html.replaceAll('$DQUOTE$', '"').replaceAll("$QUOTE$", "'");
 	
 }
 
